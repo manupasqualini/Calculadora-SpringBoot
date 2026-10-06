@@ -20,6 +20,12 @@ public class CalculadoraController {
         model.addAttribute("a",a);
         model.addAttribute("b",b);
         model.addAttribute("operacao", operacao);
+
+        try {
+            model.addAttribute("resultado",service.calcular(a,b,operacao));
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("erro", e.getMessage());
+        }
         return "index";
     }
 }
